@@ -1,12 +1,12 @@
-import React from "react";
-import { View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React from 'react';
+import {View, Image, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {
   createBottomTabNavigator,
   BottomTabBar,
-} from "@react-navigation/bottom-tabs";
+} from '@react-navigation/bottom-tabs';
 
-import { Home, TimeTable, Marks, Profile, HomeWork } from "../screens";
-import { COLORS, FONTS, icons } from "../constants";
+import {Home, TimeTable, Marks, Profile, HomeWork} from '../screens';
+import {COLORS, FONTS, icons} from '../constants';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,28 +16,26 @@ const Tabs = () => {
       tabBarOptions={{
         showLabel: false,
         style: styles.tapNav,
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={styles.tapScreenView}>
               <Image
                 source={icons.homePNG}
                 resizeMode="contain"
                 style={[
                   styles.tapScreenImg,
-                  { tintColor: focused ? COLORS.darkBlue : COLORS.black },
+                  {tintColor: focused ? COLORS.darkBlue : COLORS.black},
                 ]}
               />
               <Text
                 style={{
                   color: focused ? COLORS.darkBlue : COLORS.black,
                   ...FONTS.body5,
-                }}
-              >
+                }}>
                 Home
               </Text>
             </View>
@@ -49,22 +47,21 @@ const Tabs = () => {
         // component={TimeTable}
         component={HomeWork}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={styles.tapScreenView}>
               <Image
                 source={icons.homeWrokPNG}
                 resizeMode="contain"
                 style={[
                   styles.tapScreenImg,
-                  { tintColor: focused ? COLORS.darkBlue : COLORS.black },
+                  {tintColor: focused ? COLORS.darkBlue : COLORS.black},
                 ]}
               />
               <Text
                 style={{
                   color: focused ? COLORS.darkBlue : COLORS.black,
                   ...FONTS.body5,
-                }}
-              >
+                }}>
                 Home Work
               </Text>
             </View>
@@ -75,22 +72,21 @@ const Tabs = () => {
         name="Profile"
         component={Profile}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={styles.tapScreenView}>
               <Image
                 source={icons.profilePNG}
                 resizeMode="contain"
                 style={[
                   styles.tapScreenImg,
-                  { tintColor: focused ? COLORS.darkBlue : COLORS.black },
+                  {tintColor: focused ? COLORS.darkBlue : COLORS.black},
                 ]}
               />
               <Text
                 style={{
                   color: focused ? COLORS.darkBlue : COLORS.black,
                   ...FONTS.body5,
-                }}
-              >
+                }}>
                 Profile
               </Text>
             </View>
@@ -101,22 +97,21 @@ const Tabs = () => {
         name="Marks"
         component={Marks}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={styles.tapScreenView}>
               <Image
                 source={icons.timeTablePNG}
                 resizeMode="contain"
                 style={[
                   styles.tapScreenImg,
-                  { tintColor: focused ? COLORS.darkBlue : COLORS.black },
+                  {tintColor: focused ? COLORS.darkBlue : COLORS.black},
                 ]}
               />
               <Text
                 style={{
                   color: focused ? COLORS.darkBlue : COLORS.black,
                   ...FONTS.body5,
-                }}
-              >
+                }}>
                 Applications
               </Text>
             </View>
@@ -127,22 +122,21 @@ const Tabs = () => {
         name="Settings"
         component={Home}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={styles.tapScreenView}>
               <Image
                 source={icons.settingPng}
                 resizeMode="contain"
                 style={[
                   styles.tapScreenImg,
-                  { tintColor: focused ? COLORS.darkBlue : COLORS.black },
+                  {tintColor: focused ? COLORS.darkBlue : COLORS.black},
                 ]}
               />
               <Text
                 style={{
                   color: focused ? COLORS.darkBlue : COLORS.black,
                   ...FONTS.body5,
-                }}
-              >
+                }}>
                 Setting
               </Text>
             </View>
@@ -166,18 +160,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   tapNav: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     elevation: 0,
     backgroundColor: COLORS.white,
-    borderTopColor: "transparent",
+    borderTopColor: 'transparent',
     height: 70,
   },
   tapScreenView: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tapScreenImg: {
     width: 35,

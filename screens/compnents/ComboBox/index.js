@@ -4,7 +4,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {COLORS} from './../../../constants';
 
-const ComboBox = ({application, setApplication}) => {
+const ComboBox = ({application, setApplication, comboxBoxObjects}) => {
   return (
     <View
       style={[
@@ -24,17 +24,16 @@ const ComboBox = ({application, setApplication}) => {
         ]}
         selectedValue={application}
         onValueChange={(itemValue, itemIndex) => setApplication(itemValue)}>
-        <Picker.Item
-          style={{
-            color: COLORS.darkBlue,
-          }}
-          label="Leave Applicaiton"
-          value="Leave Application"
-        />
-        <Picker.Item
-          label="Sick Leave Application"
-          value="Sick Leave Application"
-        />
+        {comboxBoxObjects.map((value, key) => (
+          <Picker.Item
+            key={key}
+            style={{
+              color: COLORS.darkBlue,
+            }}
+            label={value}
+            value={value}
+          />
+        ))}
       </Picker>
     </View>
   );

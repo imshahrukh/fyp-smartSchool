@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   StyleSheet,
@@ -10,7 +11,7 @@ import {
 } from 'react-native';
 import {COLORS, FONTS, icons} from '../constants';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Attendance, HomeWork, Application} from './index';
+import {Attendance, HomeWork, Application, Complaints} from './index';
 
 const Stack = createStackNavigator();
 // card
@@ -99,6 +100,7 @@ const HomePage = ({navigation}) => {
             icon2={icons.finePNG}
             text2="Fine"
             notification2="0"
+            navigation={navigation}
           />
         </ScrollView>
       </SafeAreaView>
@@ -116,6 +118,9 @@ const Home = ({navigation}) => {
       <Stack.Screen name="Attendance" component={Attendance} />
       <Stack.Screen name="Home Work" component={HomeWork} />
       <Stack.Screen name="Applicaiton" component={Application} />
+      <Stack.Screen name="Complaint" component={Complaints} />
+
+      {/* <Stack.Screen name="Complaint" component={Complaints} /> */}
     </Stack.Navigator>
   );
 };

@@ -7,11 +7,13 @@ import Profile from './Profile';
 import Attendance from './Attendance';
 import HomeWork from './HomeWork';
 import Application from './Application';
+import Complaints from './Compliants';
 
 export {
   Home,
   Application,
   CryptoDetail,
+  Complaints,
   Transaction,
   TimeTable,
   Marks,

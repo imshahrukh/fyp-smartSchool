@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { COLORS, FONTS, icons } from "./../../../constants";
+import React from 'react';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {COLORS, FONTS, icons} from './../../../constants';
 
-const ProfileTile = ({ message }) => {
+const ProfileTile = ({message}) => {
   return (
     <TouchableOpacity>
       <View
@@ -13,22 +13,20 @@ const ProfileTile = ({ message }) => {
             backgroundColor: COLORS.lightGray,
             marginBottom: 10,
             marginTop: 5,
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "row",
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexDirection: 'row',
             padding: 10,
 
             // alignItems: "center",
           },
-        ]}
-      >
+        ]}>
         <Text
           style={{
             ...FONTS.body2,
             color: COLORS.darkBlue,
-            fontWeight: "700",
-          }}
-        >
+            fontWeight: '700',
+          }}>
           {message}
         </Text>
         <Image
@@ -39,8 +37,7 @@ const ProfileTile = ({ message }) => {
             height: 30,
             tintColor: COLORS.darkBlue,
             //   marginRight: "5%",
-          }}
-        ></Image>
+          }}></Image>
       </View>
     </TouchableOpacity>
   );
@@ -48,7 +45,7 @@ const ProfileTile = ({ message }) => {
 
 const styles = StyleSheet.create({
   shadow: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,

@@ -17,9 +17,7 @@ import {useState} from 'react';
 import {DatePickerModal, Icons} from 'react-native-paper-dates';
 import {COLORS, FONTS} from '../constants';
 import TopInformationBar from './compnents/TopInformationBar/_topInformationBar';
-import MraksNavigator from './compnents/MarkNavigator/marksNavigator';
-import DATA from './data/marks';
-import ShowMarks from './compnents/showMarks/showMarks';
+import PaperDatePicker from './compnents/PaperDatePicker';
 
 // Component to render
 
@@ -27,7 +25,7 @@ const LabelTile = ({title}) => {
   return (
     <View style={styles.labelTile}>
       <Text style={styles.labelTileText}>{title}</Text>
-      <View style={styles.labelTileLine}>{''}</View>
+      <View style={styles.labelTileLine}></View>
     </View>
   );
 };
@@ -104,16 +102,7 @@ const ShowLastAttendance = ({status, date}) => {
 const Attendance = () => {
   let [select, setSelect] = useState(2);
   const [visible, setVisible] = React.useState(false);
-  const onDismiss = React.useCallback(() => {
-    setVisible(false);
-  }, [setVisible]);
-
-  const onChange = React.useCallback(({date}) => {
-    setVisible(false);
-    console.log({date});
-  }, []);
-
-  const date = new Date();
+  const [dates, setDates] = useState('');
   return (
     <View style={styles.container}>
       <View
@@ -132,36 +121,13 @@ const Attendance = () => {
         {/* showAttendanc */}
         <ShowAttendance status="Present" date="12 July 2021" />
         {/* Date Picker */}
-        <DatePickerModal
-          mode="single"
+
+        <PaperDatePicker
           visible={visible}
-          onDismiss={onDismiss}
-          date={date}
-          onConfirm={onChange}
-          saveLabel="Save"
-          label="Select date"
-          animationType="slide"
-          locale={'en'}
+          setVisible={setVisible}
+          setDates={setDates}
+          buttonText="Select Date"
         />
-        <TouchableOpacity
-          onPress={() => setVisible(true)}
-          style={[
-            styles.showAttendance,
-            {
-              backgroundColor: COLORS.darkBlue,
-              marginTop: 15,
-              justifyContent: 'center',
-              alignItems: 'center',
-              display: 'flex',
-            },
-          ]}>
-          <Text
-            style={{
-              color: 'white',
-            }}>
-            Select Date
-          </Text>
-        </TouchableOpacity>
         <LabelTile title="This Session" />
 
         <ThisSession />

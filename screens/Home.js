@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -7,14 +7,14 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
-} from "react-native";
-import { COLORS, FONTS, icons } from "../constants";
-import { createStackNavigator } from "@react-navigation/stack";
-import { Attendance, HomeWork } from "./index";
+} from 'react-native';
+import {COLORS, FONTS, icons} from '../constants';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Attendance, HomeWork, Application} from './index';
 
 const Stack = createStackNavigator();
 // card
-const HomeButton = ({ icon, text, notification, navigation }) => {
+const HomeButton = ({icon, text, notification, navigation}) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate(text)}>
       <View style={[styles.cardShadow]}>
@@ -26,13 +26,12 @@ const HomeButton = ({ icon, text, notification, navigation }) => {
           />
           <Text style={styles.homeBtnText}> {text} </Text>
         </View>
-        {notification === "0" ? null : (
+        {notification === '0' ? null : (
           <View style={styles.homeNotifications}>
             <Text
               style={{
-                color: "white",
-              }}
-            >
+                color: 'white',
+              }}>
               0{notification}
             </Text>
           </View>
@@ -70,7 +69,7 @@ const HomeButtonRow = ({
 };
 
 // list of naviagations
-const HomePage = ({ navigation }) => {
+const HomePage = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -85,8 +84,8 @@ const HomePage = ({ navigation }) => {
             navigation={navigation}
           />
           <HomeButtonRow
-            icon1={icons.profilePNG}
-            text1="Profile"
+            icon1={icons.applicaitonPNG}
+            text1="Applicaiton"
             notification1="2"
             icon2={icons.settingPng}
             text2="Settings"
@@ -106,17 +105,17 @@ const HomePage = ({ navigation }) => {
     </View>
   );
 };
-const Home = ({ navigation }) => {
+const Home = ({navigation}) => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={"Homes"}
-    >
+      initialRouteName={'Homes'}>
       <Stack.Screen name="Homes" component={HomePage} />
       <Stack.Screen name="Attendance" component={Attendance} />
       <Stack.Screen name="Home Work" component={HomeWork} />
+      <Stack.Screen name="Applicaiton" component={Application} />
     </Stack.Navigator>
   );
 };
@@ -134,17 +133,16 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 70,
     paddingTop: 25,
     // backgroundColor: "red",
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+
+    display: 'flex',
   },
   shadows: {
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 10,
       height: 10,
@@ -157,23 +155,23 @@ const styles = StyleSheet.create({
   homeButton: {
     height: 180,
     width: 170,
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
     borderRadius: 15,
   },
   homeButtonRow: {
-    width: "100%",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    display: "flex",
-    flexDirection: "row",
+    width: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
     marginBottom: 25,
   },
   cardShadow: {
     borderRadius: 16,
-    backgroundColor: "transparent",
-    shadowColor: "#000",
+    backgroundColor: 'transparent',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,
@@ -183,14 +181,14 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   cardContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     borderRadius: 16,
-    overflow: "hidden",
+    overflow: 'hidden',
     height: 180,
     width: 170,
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
   },
   homeImages: {
     height: 130,
@@ -199,16 +197,16 @@ const styles = StyleSheet.create({
   homeBtnText: {
     ...FONTS.body2,
     color: COLORS.darkBlue,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   homeNotifications: {
-    position: "absolute",
+    position: 'absolute',
     top: 10,
     right: 10,
     width: 30,
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
     zIndex: 10,
     backgroundColor: COLORS.darkBlue,
 

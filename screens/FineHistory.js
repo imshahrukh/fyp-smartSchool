@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {COLORS, FONTS} from '../constants';
 import TopInformationBar from './compnents/TopInformationBar/_topInformationBar';
 // MAterial UI
@@ -23,9 +23,88 @@ import PaperDatePicker from './compnents/PaperDatePicker';
 import LabelTile from './compnents/LabelTile';
 
 // data
+const dataFine = [
+  {
+    Violation: {
+      title: 'Belt and Tie Missing',
+    },
+    status: 'Pending Fine',
+    amount: '250',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Exame Cheating',
+    },
+    status: 'Submitted Fine',
+    amount: '2050',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Uniform Voliation',
+    },
+    status: 'Due Date Passed',
+    amount: '50',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Dress Code Voilation',
+    },
+    status: 'Due Date Passed',
+    amount: '2050',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Late Fee Submittion',
+    },
+    status: 'Submitted Fine',
+    amount: '2050',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Dress Code Voilation',
+    },
+    status: 'Due Date Passed',
+    amount: '2050',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Late Fee Submittion',
+    },
+    status: 'Submitted Fine',
+    amount: '2050',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+  {
+    Violation: {
+      title: 'Late Fee Submittion',
+    },
+    status: 'Submitted Fine',
+    amount: '2050',
+    date: '12/1/2021',
+    dueDate: '18/1/2021',
+  },
+];
+
+// const ComboBoxValue = {
+//   Pending:
+// }
 // startt
-const ShowLastAttendance = ({status, title}) => {
+const ShowLastAttendance = ({data}) => {
   const [show, setShow] = useState(false);
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -42,14 +121,18 @@ const ShowLastAttendance = ({status, title}) => {
                 ...FONTS.h4,
               })
             }>
-            {title}
+            {data.Violation.title}
           </Text>
           <Text
             style={
               ([styles.showAttendanceText],
               {
                 backgroundColor:
-                  status === 'Active' ? COLORS.tomato : COLORS.darkBlue,
+                  data.status === 'Due Date Passed'
+                    ? COLORS.tomato
+                    : data.status === 'Pending Fine'
+                    ? COLORS.waterBlue
+                    : COLORS.darkBlue,
                 ...FONTS.h4,
                 color: 'white',
                 borderRadius: 5,
@@ -59,7 +142,7 @@ const ShowLastAttendance = ({status, title}) => {
                 textAlign: 'center',
               })
             }>
-            {status}
+            {data.status}
           </Text>
         </View>
         {/* Leave Application Information */}
@@ -73,18 +156,18 @@ const ShowLastAttendance = ({status, title}) => {
             },
           ]}>
           <View style={styles.showLastAttendance}>
-            <Text style={styles.leaveTxt}>Title</Text>
-            <Text style={styles.leaveTxt}>Cheating</Text>
+            <Text style={styles.leaveTxt}>Amount</Text>
+            <Text style={styles.leaveTxt}>{data.amount}</Text>
           </View>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>Date</Text>
-            <Text style={styles.leaveTxt}>12/03/2021</Text>
+            <Text style={styles.leaveTxt}>{data.date}</Text>
           </View>
           <View style={styles.showLastAttendance}>
-            <Text style={styles.leaveTxt}>Submitted</Text>
-            <Text style={styles.leaveTxt}>Shahrukh Fazal</Text>
+            <Text style={styles.leaveTxt}>Due Date</Text>
+            <Text style={styles.leaveTxt}>{data.dueDate}</Text>
           </View>
-          <View
+          {/* <View
             style={[
               styles.showLastAttendance,
               {
@@ -119,26 +202,54 @@ const ShowLastAttendance = ({status, title}) => {
               This is typically due to a difference in line endings, especially
               the difference in LF vs. CRLF . Unix systems like. Windows
             </Text>
-          </View>
+          </View> */}
         </View>
       </View>
     </TouchableOpacity>
   );
 };
-const Complaints = () => {
+const FineHistory = () => {
   // States
   const comboxBoxObjects = [
-    'Last 7 Complaints',
-    'Active Complaints',
-    'Closed Complaints',
-    'All Complaints',
-    'Fee Complaints',
-    'Dress Voilation Complaints',
+    'Last 7 Fine',
+    'Pending Fine',
+    'Submitted Fine',
+    'Due Date Passed',
+    'All Fine',
   ];
-  let [application, setApplication] = useState(comboxBoxObjects[0]);
+  const getDataByStatus = () => {
+    return dataFine.filter(el => el.status === application);
+  };
+  const getDataOfSevenDays = () => {
+    return dataFine.slice(0, dataFine.length >= 8 ? 7 : dataFine.length);
+  };
+  let [application, setApplication] = useState('Last 7 Fine');
   let [select, setSelect] = useState(2);
-  const [visible, setVisible] = React.useState(false);
-  const [dates, setDates] = React.useState(false);
+  let [fineData, setFineData] = useState(getDataOfSevenDays());
+  // filter data
+
+  // check if the application object contain value of a combo box
+  // like pending submiited or due date passed if yes call the methods according
+  // Condition
+  useEffect(() => {
+    if (
+      application === comboxBoxObjects[1] ||
+      application === comboxBoxObjects[2] ||
+      application === comboxBoxObjects[3]
+    ) {
+      setFineData(getDataByStatus());
+      // console.log(fineData);
+    }
+    if (application === comboxBoxObjects[4]) {
+      setFineData(dataFine);
+      // console.log(fineData);
+    }
+    if (application === comboxBoxObjects[0]) {
+      setFineData(getDataOfSevenDays());
+      // console.log(fineData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [application]);
 
   return (
     <View style={styles.container}>
@@ -149,7 +260,7 @@ const Complaints = () => {
           paddingLeft: 15,
           paddingRight: 15,
         }}>
-        <TopInformationBar menu={'Complaints'} />
+        <TopInformationBar menu={'Fine History'} />
         {/* Combox box */}
         <ComboBox
           comboxBoxObjects={comboxBoxObjects}
@@ -166,12 +277,9 @@ const Complaints = () => {
             flex: 1,
           }}>
           <ScrollView showsVerticalScrollIndicator={false} bounces={true}>
-            <ShowLastAttendance status="Active" title="Dress Code Voliation" />
-            <ShowLastAttendance status="Closed" title="Late Fee Submission" />
-            <ShowLastAttendance status="Active" title="Code BUzz" />
-            <ShowLastAttendance status="Closed" title="Dress Code Voliation" />
-            <ShowLastAttendance status="Closed" title="Shutup" />
-            <ShowLastAttendance status="Active" title="Cheating Case" />
+            {fineData.map((el, key) => (
+              <ShowLastAttendance key={key} data={el} />
+            ))}
           </ScrollView>
         </SafeAreaView>
       </View>
@@ -229,4 +337,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Complaints;
+export default FineHistory;

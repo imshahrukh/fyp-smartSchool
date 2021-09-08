@@ -12,6 +12,7 @@ import {
 import {COLORS, FONTS, icons} from '../constants';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Attendance, HomeWork, Application, Complaints} from './index';
+import FineHistory from './FineHistory';
 
 const Stack = createStackNavigator();
 // card
@@ -119,6 +120,7 @@ const Home = ({navigation}) => {
       <Stack.Screen name="Home Work" component={HomeWork} />
       <Stack.Screen name="Applicaiton" component={Application} />
       <Stack.Screen name="Complaint" component={Complaints} />
+      <Stack.Screen name="Fine" component={FineHistory} />
 
       {/* <Stack.Screen name="Complaint" component={Complaints} /> */}
     </Stack.Navigator>

@@ -8,6 +8,7 @@ import Attendance from './Attendance';
 import HomeWork from './HomeWork';
 import Application from './Application';
 import Complaints from './Compliants';
+import FineHistory from './FineHistory';
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   Profile,
   Attendance,
   HomeWork,
+  FineHistory,
 };

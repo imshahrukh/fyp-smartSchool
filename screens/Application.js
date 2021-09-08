@@ -1,5 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
+// Only pending Leave can be deleted on update
+
 import React from 'react';
 import {
   StyleSheet,
@@ -9,13 +11,14 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  Image,
   FlatList,
   Button,
 } from 'react-native';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 import {useState} from 'react';
-import {COLORS, FONTS} from '../constants';
+import {COLORS, FONTS, icons} from '../constants';
 import TopInformationBar from './compnents/TopInformationBar/_topInformationBar';
 // MAterial UI
 import ComboBox from './compnents/ComboBox';
@@ -23,9 +26,51 @@ import PaperDatePicker from './compnents/PaperDatePicker';
 import LabelTile from './compnents/LabelTile';
 
 // data
+const applicationData = [
+  {
+    date: '1/12/2012',
+    to: 'name',
+    from: 'name',
+    subject: 'Leave Application',
+    body: '',
+    signedBy: 'Shahrukh khan Fazal',
+    leaveDays: ['date1', 'date2'],
+    status: 'Pending',
+  },
+  {
+    date: '1/12/2012',
+    to: 'name',
+    from: 'name',
+    subject: 'Urgent Work Application',
+    body: '',
+    signedBy: 'Shahrukh khan Fazal',
+    leaveDays: ['date1', 'date2'],
+    status: 'Pending',
+  },
+  {
+    date: '1/12/2012',
+    to: 'name',
+    from: 'name',
+    subject: 'Urgent Work Application',
+    body: '',
+    signedBy: 'Shahrukh khan Fazal',
+    leaveDays: ['date1', 'date2'],
+    status: 'Accepted',
+  },
+  {
+    date: '1/12/2012',
+    to: 'name',
+    from: 'name',
+    subject: 'Urgent Work Application',
+    body: '',
+    signedBy: 'Shahrukh khan Fazal',
+    leaveDays: ['date1', 'date2'],
+    status: 'Rejected',
+  },
+];
 // startt
 const comboxBoxObjects = ['Leave Application', 'Sick Leave', 'Urgent Work'];
-const ShowLastAttendance = ({status, date}) => {
+const ShowLastAttendance = ({data}) => {
   const [show, setShow] = useState(false);
   return (
     <TouchableOpacity
@@ -43,23 +88,47 @@ const ShowLastAttendance = ({status, date}) => {
                 ...FONTS.h4,
               })
             }>
-            {date}
+            {data.date}
           </Text>
           <Text
             style={
               ([styles.showAttendanceText],
               {
                 color:
-                  status === 'Rejected'
+                  data.status === 'Rejected'
                     ? COLORS.tomato
-                    : status === 'Pending'
+                    : data.status === 'Pending'
                     ? COLORS.waterBlue
                     : COLORS.darkBlue,
                 ...FONTS.h4,
               })
             }>
-            {status}
+            {data.status}
           </Text>
+          {/* Image */}
+          {data.status === 'Pending' ? (
+            <View
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+              }}>
+              <Image
+                source={icons.deletePNG}
+                resizeMode="contain"
+                style={[
+                  styles.homeImages,
+                  {
+                    marginRight: 8,
+                  },
+                ]}
+              />
+              <Image
+                source={icons.editPNG}
+                resizeMode="contain"
+                style={[styles.homeImages]}
+              />
+            </View>
+          ) : null}
         </View>
         {/* Leave Application Information */}
         <View
@@ -72,15 +141,19 @@ const ShowLastAttendance = ({status, date}) => {
           ]}>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>Title</Text>
-            <Text style={styles.leaveTxt}>Sick Leave</Text>
+            <Text style={styles.leaveTxt}>{data.subject}</Text>
+          </View>
+          <View style={styles.showLastAttendance}>
+            <Text style={styles.leaveTxt}>Date</Text>
+            <Text style={styles.leaveTxt}>{data.date}</Text>
           </View>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>To</Text>
-            <Text style={styles.leaveTxt}>12/03/2021</Text>
+            <Text style={styles.leaveTxt}>{data.to}</Text>
           </View>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>From</Text>
-            <Text style={styles.leaveTxt}>12/03/2021</Text>
+            <Text style={styles.leaveTxt}>{data.from}</Text>
           </View>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>Submitted</Text>
@@ -177,12 +250,9 @@ const Attendance = () => {
             flex: 1,
           }}>
           <ScrollView showsVerticalScrollIndicator={false} bounces={true}>
-            <ShowLastAttendance status="Pending" date="12 July 2021" />
-            <ShowLastAttendance status="Accepted" date="11 July 2021" />
-            <ShowLastAttendance status="Rejected" date="10 July 2021" />
-            <ShowLastAttendance status="Accepted" date="09 July 2021" />
-            <ShowLastAttendance status="Accepted" date="08 July 2021" />
-            <ShowLastAttendance status="Rejected" date="07 July 2021" />
+            {applicationData.map((data, key) => (
+              <ShowLastAttendance key={key} data={data} />
+            ))}
           </ScrollView>
         </SafeAreaView>
       </View>
@@ -233,6 +303,11 @@ const styles = StyleSheet.create({
   leaveTxt: {
     color: 'white',
     ...FONTS.h4,
+  },
+  homeImages: {
+    height: 28,
+    width: 28,
+    tintColor: COLORS.darkBlue,
   },
 });
 

@@ -30,8 +30,12 @@ const compaintPNG = require('./../assets/icons/noun_complaints_3385052.png');
 const attendancePNG = require('./../assets/icons/noun_raisehand_3918524.png');
 const timeTablePNG = require('./../assets/icons/noun_application_4209499.png');
 const applicaitonPNG = require('./../assets/icons/noun_application_4209499.png');
+const deletePNG = require('./../assets/icons/icons8-delete-64.png');
+const editPNG = require('./../assets/icons/icons8-edit-26.png');
 export default {
   back_arrow,
+  deletePNG,
+  editPNG,
   compaintPNG,
   applicaitonPNG,
   attendancePNG,

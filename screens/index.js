@@ -10,9 +10,11 @@ import Application from './Application';
 import Complaints from './Compliants';
 import FineHistory from './FineHistory';
 import Circular from './Circular';
+import PinCode from './PinCode'
 
 export {
   Home,
+  PinCode,
   Application,
   CryptoDetail,
   Complaints,

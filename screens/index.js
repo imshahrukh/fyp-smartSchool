@@ -9,12 +9,14 @@ import HomeWork from './HomeWork';
 import Application from './Application';
 import Complaints from './Compliants';
 import FineHistory from './FineHistory';
+import Circular from './Circular';
 
 export {
   Home,
   Application,
   CryptoDetail,
   Complaints,
+  Circular,
   Transaction,
   TimeTable,
   Marks,

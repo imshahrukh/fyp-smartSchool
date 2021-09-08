@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {COLORS, FONTS, icons} from '../constants';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Attendance, HomeWork, Application, Complaints} from './index';
+import {Attendance, HomeWork, Application, Complaints, Circular} from './index';
 import FineHistory from './FineHistory';
 
 const Stack = createStackNavigator();
@@ -90,7 +90,7 @@ const HomePage = ({navigation}) => {
             text1="Applicaiton"
             notification1="2"
             icon2={icons.settingPng}
-            text2="Settings"
+            text2="Circular"
             notification2="0"
             navigation={navigation}
           />
@@ -121,6 +121,7 @@ const Home = ({navigation}) => {
       <Stack.Screen name="Applicaiton" component={Application} />
       <Stack.Screen name="Complaint" component={Complaints} />
       <Stack.Screen name="Fine" component={FineHistory} />
+      <Stack.Screen name="Circular" component={Circular} />
 
       {/* <Stack.Screen name="Complaint" component={Complaints} /> */}
     </Stack.Navigator>

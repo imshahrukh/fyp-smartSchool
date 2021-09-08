@@ -89,7 +89,7 @@ const HomePage = ({navigation}) => {
             icon1={icons.applicaitonPNG}
             text1="Applicaiton"
             notification1="2"
-            icon2={icons.settingPng}
+            icon2={icons.circularPNG}
             text2="Circular"
             notification2="0"
             navigation={navigation}

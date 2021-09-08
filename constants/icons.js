@@ -32,9 +32,11 @@ const timeTablePNG = require('./../assets/icons/noun_application_4209499.png');
 const applicaitonPNG = require('./../assets/icons/noun_application_4209499.png');
 const deletePNG = require('./../assets/icons/icons8-delete-64.png');
 const editPNG = require('./../assets/icons/icons8-edit-26.png');
+const circularPNG = require('./../assets/icons/noun_notification_4220136.png');
 export default {
   back_arrow,
   deletePNG,
+  circularPNG,
   editPNG,
   compaintPNG,
   applicaitonPNG,

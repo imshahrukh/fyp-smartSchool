@@ -23,6 +23,14 @@ import PaperDatePicker from './compnents/PaperDatePicker';
 import LabelTile from './compnents/LabelTile';
 
 // data
+const comboxBoxObjects = [
+  'Last 7 Complaints',
+  'Active Complaints',
+  'Closed Complaints',
+  'All Complaints',
+  'Fee Complaints',
+  'Dress Voilation Complaints',
+];
 // startt
 const ShowLastAttendance = ({status, title}) => {
   const [show, setShow] = useState(false);
@@ -127,14 +135,7 @@ const ShowLastAttendance = ({status, title}) => {
 };
 const Complaints = () => {
   // States
-  const comboxBoxObjects = [
-    'Last 7 Complaints',
-    'Active Complaints',
-    'Closed Complaints',
-    'All Complaints',
-    'Fee Complaints',
-    'Dress Voilation Complaints',
-  ];
+
   let [application, setApplication] = useState(comboxBoxObjects[0]);
   let [select, setSelect] = useState(2);
   const [visible, setVisible] = React.useState(false);

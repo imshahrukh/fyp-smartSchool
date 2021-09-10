@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -25,14 +26,57 @@ import LabelTile from './compnents/LabelTile';
 // data
 const comboxBoxObjects = [
   'Last 7 Complaints',
-  'Active Complaints',
-  'Closed Complaints',
   'All Complaints',
+  'Active',
+  'Closed',
   'Fee Complaints',
   'Dress Voilation Complaints',
 ];
+const complaints = [
+  {
+    type: 'Fee Complaints',
+    date: '12/12/2021',
+    filedBy: 'teacher_id',
+    description:
+      'As events continue to evolve in the digital landscape, you might have seen some fun and engaging personalized event tickets shared on social media for GraphQL Conf and Next.js Conf in 2021. I love this idea',
+    status: 'Closed',
+    respondant: 'Name',
+    remarks:
+      'As events continue to evolve in the digital landscape, As events continue to evolve in the digital landscape, As events continue to evolve in the digital landscape,',
+  },
+  {
+    type: 'Dress Voilation Complaints',
+    date: '12/12/2021',
+    filedBy: 'teacher_id',
+    description:
+      'As events continue to evolve in the digital landscape, you might have seen some fun and engaging personalized event tickets shared on social media for GraphQL Conf and Next.js Conf in 2021. I love this idea',
+    status: 'Active',
+    respondant: 'Name',
+    remarks: 'As events continue to evolve in the digital landscape,',
+  },
+  {
+    type: 'Fee Complaints',
+    date: '12/12/2021',
+    filedBy: 'teacher_id',
+    description:
+      'As events continue to evolve in the digital landscape, you might have seen some fun and engaging personalized event tickets shared on social media for GraphQL Conf and Next.js Conf in 2021. I love this idea',
+    status: 'Active',
+    respondant: 'Name',
+    remarks: 'As events continue to evolve in the digital landscape,',
+  },
+  {
+    type: 'Dress Voilation Complaints',
+    date: '12/12/2021',
+    filedBy: 'teacher_id',
+    description:
+      'As events continue to evolve in the digital landscape, you might have seen some fun and engaging personalized event tickets shared on social media for GraphQL Conf and Next.js Conf in 2021. I love this idea',
+    status: 'Closed',
+    respondant: 'Name',
+    remarks: 'As events continue to evolve in the digital landscape,',
+  },
+];
 // startt
-const ShowLastAttendance = ({status, title}) => {
+const ShowLastAttendance = ({data}) => {
   const [show, setShow] = useState(false);
   return (
     <TouchableOpacity
@@ -50,14 +94,14 @@ const ShowLastAttendance = ({status, title}) => {
                 ...FONTS.h4,
               })
             }>
-            {title}
+            {data.type}
           </Text>
           <Text
             style={
               ([styles.showAttendanceText],
               {
                 backgroundColor:
-                  status === 'Active' ? COLORS.tomato : COLORS.darkBlue,
+                  data.status === 'Active' ? COLORS.tomato : COLORS.darkBlue,
                 ...FONTS.h4,
                 color: 'white',
                 borderRadius: 5,
@@ -67,7 +111,7 @@ const ShowLastAttendance = ({status, title}) => {
                 textAlign: 'center',
               })
             }>
-            {status}
+            {data.status}
           </Text>
         </View>
         {/* Leave Application Information */}
@@ -82,11 +126,11 @@ const ShowLastAttendance = ({status, title}) => {
           ]}>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>Title</Text>
-            <Text style={styles.leaveTxt}>Cheating</Text>
+            <Text style={styles.leaveTxt}>{data.type}</Text>
           </View>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>Date</Text>
-            <Text style={styles.leaveTxt}>12/03/2021</Text>
+            <Text style={styles.leaveTxt}>{data.date}</Text>
           </View>
           <View style={styles.showLastAttendance}>
             <Text style={styles.leaveTxt}>Submitted</Text>
@@ -105,12 +149,7 @@ const ShowLastAttendance = ({status, title}) => {
               },
             ]}>
             <Text style={[styles.leaveTxt, styles.leaveLbl]}>Discription</Text>
-            <Text style={styles.leaveTxt}>
-              This is typically due to a difference in line endings, especially
-              the difference in LF vs. CRLF . Unix systems like Linux and macOS
-              use LF , the line feed character, for line breaks by default.
-              Windows,{' '}
-            </Text>
+            <Text style={styles.leaveTxt}>{data.description}</Text>
           </View>
           <View
             style={[
@@ -123,10 +162,7 @@ const ShowLastAttendance = ({status, title}) => {
               },
             ]}>
             <Text style={[styles.leaveTxt, styles.leaveLbl]}>Remarks</Text>
-            <Text style={styles.leaveTxt}>
-              This is typically due to a difference in line endings, especially
-              the difference in LF vs. CRLF . Unix systems like. Windows
-            </Text>
+            <Text style={styles.leaveTxt}>{data.remarks}</Text>
           </View>
         </View>
       </View>
@@ -136,11 +172,27 @@ const ShowLastAttendance = ({status, title}) => {
 const Complaints = () => {
   // States
 
-  let [application, setApplication] = useState(comboxBoxObjects[0]);
-  let [select, setSelect] = useState(2);
-  const [visible, setVisible] = React.useState(false);
-  const [dates, setDates] = React.useState(false);
+  let [application, setApplication] = useState('Last 7 Complaints');
+  let [data, setData] = useState(complaints);
 
+  const get7Days = () => {
+    return complaints.slice(0, complaints.length >= 8 ? 7 : complaints.length);
+  };
+  const getByStatus = () => {
+    return complaints.filter(
+      el => el.status === application || el.type === application,
+    );
+  };
+
+  useEffect(() => {
+    if (application === comboxBoxObjects[0]) {
+      setData(get7Days());
+    } else if (application === comboxBoxObjects[1]) {
+      setData(complaints);
+    } else {
+      setData(getByStatus());
+    }
+  }, [application]);
   return (
     <View style={styles.container}>
       <View
@@ -167,12 +219,15 @@ const Complaints = () => {
             flex: 1,
           }}>
           <ScrollView showsVerticalScrollIndicator={false} bounces={true}>
-            <ShowLastAttendance status="Active" title="Dress Code Voliation" />
-            <ShowLastAttendance status="Closed" title="Late Fee Submission" />
+            {data.map((item, key) => (
+              <ShowLastAttendance key={key} data={item} />
+            ))}
+
+            {/* <ShowLastAttendance status="Closed" title="Late Fee Submission" />
             <ShowLastAttendance status="Active" title="Code BUzz" />
             <ShowLastAttendance status="Closed" title="Dress Code Voliation" />
             <ShowLastAttendance status="Closed" title="Shutup" />
-            <ShowLastAttendance status="Active" title="Cheating Case" />
+            <ShowLastAttendance status="Active" title="Cheating Case" /> */}
           </ScrollView>
         </SafeAreaView>
       </View>

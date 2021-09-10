@@ -34,8 +34,10 @@ const deletePNG = require('./../assets/icons/icons8-delete-64.png');
 const editPNG = require('./../assets/icons/icons8-edit-26.png');
 const circularPNG = require('./../assets/icons/noun_notification_4220136.png');
 const pinCodePNG = require('./../assets/icons/noun_PinCode_2796338.png');
+const schoolPNG = require('./../assets/icons/noun_School_3668456.png');
 export default {
   back_arrow,
+  schoolPNG,
   deletePNG,
   pinCodePNG,
   circularPNG,

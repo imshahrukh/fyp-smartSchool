@@ -129,6 +129,9 @@ const InformationTile = ({type, title, placeHolder, buttonMessage}) => {
 };
 
 const Profile = () => {
+  let Image_Http_URL = {
+    uri: 'https://www.bootdey.com/img/Content/avatar/avatar1.png',
+  };
   return (
     <View style={[styles.container]}>
       <TopInformationBar menu={'Profile'} />
@@ -182,13 +185,13 @@ const Profile = () => {
             width: '25%',
             height: '50%',
             borderRadius: 10,
-            backgroundColor: COLORS.gray,
+            // backgroundColor: COLORS.gray,
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative',
             marginBottom: 25,
           }}>
-          <Image
+          {/* <Image
             source={icons.profile}
             resizeMode="contain"
             style={{
@@ -197,7 +200,8 @@ const Profile = () => {
               tintColor: COLORS.softWhite,
               marginRight: '5%',
               zIndex: 2,
-            }}></Image>
+            }}></Image> */}
+          <Image style={styles.image} source={Image_Http_URL} />
         </View>
       </View>
       {/* body */}
@@ -241,6 +245,14 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     backgroundColor: COLORS.softWhite,
     // backgroundColor: "red",
+  },
+  image: {
+    width: 90,
+    height: 95,
+    borderRadius: 45,
+    borderWidth: 2,
+
+    // borderColor: '#2575C0',
   },
   scrollView: {
     // marginTop: 10,

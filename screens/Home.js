@@ -18,6 +18,7 @@ import {
   Complaints,
   Circular,
   PinCode,
+  ContactSchool,
 } from './index';
 import FineHistory from './FineHistory';
 
@@ -114,9 +115,9 @@ const HomePage = ({navigation}) => {
             icon1={icons.pinCodePNG}
             text1="Pin Code"
             notification1="0"
-            icon2={icons.finePNG}
-            text2="Fine"
-            notification2="0"
+            icon2={icons.schoolPNG}
+            text2="Contact School"
+            notification2=""
             navigation={navigation}
           />
         </ScrollView>
@@ -139,6 +140,7 @@ const Home = ({navigation}) => {
       <Stack.Screen name="Fine" component={FineHistory} />
       <Stack.Screen name="Circular" component={Circular} />
       <Stack.Screen name="Pin Code" component={PinCode} />
+      <Stack.Screen name="Contact School" component={ContactSchool} />
 
       {/* <Stack.Screen name="Complaint" component={Complaints} /> */}
     </Stack.Navigator>
